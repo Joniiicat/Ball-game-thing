@@ -1,5 +1,9 @@
 import math
 
+#constants
+G = 9.81
+FricCoefficient = 0.1
+
 class Vector2:
     def __init__(self, x, y):
         self.x = x
