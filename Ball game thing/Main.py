@@ -1,4 +1,5 @@
 import pygame as pg
+import Physics
 from pygame import sprite
 
 from MazePrototype import Maze
@@ -12,6 +13,10 @@ Gamepieces = sprite.Group(Maze(0,0))
 
 #Main Loop
 while running:
+    v = Physics.Vector2(1,1)
+    print(v.mag())
+    print(v.hat().x)
+    print(v.hat().y)
 
     #Closes the pygame instance when you close the window
     for event in pg.event.get():
