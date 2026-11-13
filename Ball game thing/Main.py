@@ -1,11 +1,15 @@
 import pygame as pg
 
+#initialisation
 pg.init()
-screen = pg.display.set_mode((1280, 720))
+screen = pg.display.set_mode((1920, 1080))
 clock = pg.time.Clock()
 running = True
 
+#Main Loop
 while running:
+
+    #Closes the pygame instance when you close the window
     for event in pg.event.get():
         if event.type == pg.QUIT:
             running = False
