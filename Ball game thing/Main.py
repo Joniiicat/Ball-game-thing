@@ -14,7 +14,7 @@ pg.init()
 screen = pg.display.set_mode((1080, 920))
 clock = pg.time.Clock()
 running = True
-Gamepieces = sprite.Group(Maze(center_x,center_y))#, Ball(100,900))
+Gamepieces = sprite.Group(Maze(center_x,center_y), Ball(center_x,center_y))
 
 RotationRate = 0.0
 
