@@ -2,14 +2,15 @@ import pygame as pg
 import Physics
 from pygame import sprite
 
-from MazePrototype import Maze
+from Maze import Maze
+from Ball import Ball
 
 #initialisation
 pg.init()
 screen = pg.display.set_mode((1080, 920))
 clock = pg.time.Clock()
 running = True
-Gamepieces = sprite.Group(Maze(0,0))
+Gamepieces = sprite.Group(Maze(0,0), Ball(500,500))
 
 RotationRate = 0.0
 
