@@ -27,10 +27,6 @@ def Inputs():
 
 #Main Loop
 while running:
-    v = Physics.Vector2(1,1)
-    print(v.mag())
-    print(v.hat().x)
-    print(v.hat().y)
     inp = Inputs()
 
     #Closes the pygame instance when you close the window
