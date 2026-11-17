@@ -5,12 +5,16 @@ from pygame import sprite
 from Maze import Maze
 from Ball import Ball
 
+
+center_x = 1080// 2
+center_y =  920// 2
+
 #initialisation
 pg.init()
 screen = pg.display.set_mode((1080, 920))
 clock = pg.time.Clock()
 running = True
-Gamepieces = sprite.Group(Maze(0,0), Ball(500,500))
+Gamepieces = sprite.Group(Maze(center_x,center_y))#, Ball(100,900))
 
 RotationRate = 0.0
 
@@ -33,7 +37,7 @@ while running:
     for event in pg.event.get():
         if event.type == pg.QUIT:
             running = False
-    screen.fill("purple")
+    screen.fill("white")
     Gamepieces.draw(screen)
     pg.display.flip()
     clock.tick(60)
