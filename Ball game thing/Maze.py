@@ -7,10 +7,11 @@ class Maze(pg.sprite.Sprite):
         #TODO: Find/Make better image
         self.x = x
         self.y = y
+        self.cleanimage = pg.image.load("assets/mazetest.png")
         self.image = pg.image.load("Assets/mazetest.png")
         self.mask = pg.mask.from_surface(self.image)
         self.rect = self.image.get_rect(center=(x, y))
 
     def rotate(self, angle):
-        self.image = pg.transform.rotate(self.image, -angle)
+        self.image = pg.transform.rotate(self.cleanimage, -angle)
         self.rect = self.image.get_rect(center=(self.x, self.y))
