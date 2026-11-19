@@ -1,6 +1,7 @@
 import pygame as pg
 import Physics
 from pygame import sprite
+import math
 
 from Maze import Maze
 from Ball import Ball
@@ -16,7 +17,11 @@ clock = pg.time.Clock()
 running = True
 Gamepieces = sprite.Group(Maze(center_x,center_y), Ball(center_x,center_y))
 
-RotationRate = 0.0
+#Constants
+RotationRate = 4.0
+
+#global Vars
+CurrRot = 0.0
 
 def Inputs():
     keys = pg.key.get_pressed()
@@ -24,10 +29,24 @@ def Inputs():
         return -1
     elif keys[pg.K_d]:
         return 1
+    else:
+        return 0
+
+def Rotate(inp):
+    global CurrRot
+    CurrRot += RotationRate * inp
+
+    if math.fabs(CurrRot) > 360:
+        CurrRot = 0
 
 #Main Loop
 while running:
     inp = Inputs()
+    maze = Gamepieces.sprites()[0]
+
+    if inp != 0:
+        Rotate(inp)
+        maze.rotate(CurrRot)
 
     #Closes the pygame instance when you close the window
     for event in pg.event.get():

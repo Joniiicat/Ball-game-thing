@@ -1,11 +1,16 @@
 import pygame as pg
 
-
 class Maze(pg.sprite.Sprite):
     def __init__(self, x, y):
         pg.sprite.Sprite.__init__(self)
 
         #TODO: Find/Make better image
+        self.x = x
+        self.y = y
         self.image = pg.image.load("Assets/mazetest.png")
         self.mask = pg.mask.from_surface(self.image)
         self.rect = self.image.get_rect(center=(x, y))
+
+    def rotate(self, angle):
+        self.image = pg.transform.rotate(self.image, -angle)
+        self.rect = self.image.get_rect(center=(self.x, self.y))
