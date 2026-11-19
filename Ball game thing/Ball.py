@@ -9,3 +9,7 @@ class Ball(pg.sprite.Sprite):
         self.image = pg.image.load("Assets/ball.png")
         self.mask = pg.mask.from_surface(self.image)
         self.rect = self.image.get_rect(center=(x, y))
+
+    def moveball(self, speedx, speedy):
+        self.rect.x += speedx
+        self.rect.y += speedy

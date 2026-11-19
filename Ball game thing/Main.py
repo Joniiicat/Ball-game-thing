@@ -17,11 +17,14 @@ clock = pg.time.Clock()
 running = True
 Gamepieces = sprite.Group(Maze(center_x,center_y), Ball(center_x,center_y))
 
+
 #Constants
 RotationRate = 4.0
 
 #global Vars
 CurrRot = 0.0
+ballspeedx = 0
+ballspeedy = 5
 
 def Inputs():
     keys = pg.key.get_pressed()
@@ -43,10 +46,13 @@ def Rotate(inp):
 while running:
     inp = Inputs()
     maze = Gamepieces.sprites()[0]
+    ball = Gamepieces.sprites()[1]
 
     if inp != 0:
         Rotate(inp)
         maze.rotate(CurrRot)
+
+    Ball.moveball(ball, ballspeedy, ballspeedy)
 
     #Closes the pygame instance when you close the window
     for event in pg.event.get():
