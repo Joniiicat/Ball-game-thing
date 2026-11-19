@@ -4,7 +4,7 @@ class Maze(pg.sprite.Sprite):
     def __init__(self, x, y):
         pg.sprite.Sprite.__init__(self)
 
-        #TODO: Find/Make better image
+
         self.x = x
         self.y = y
         self.cleanimage = pg.image.load("assets/mazetest.png")
