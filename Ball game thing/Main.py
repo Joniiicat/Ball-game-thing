@@ -1,4 +1,6 @@
 import pygame as pg
+from pygame.sprite import collide_mask
+
 import Physics
 from pygame import sprite
 import math
@@ -47,10 +49,16 @@ while running:
     inp = Inputs()
     maze = Gamepieces.sprites()[0]
     ball = Gamepieces.sprites()[1]
+    collisionchecker = pg.sprite.spritecollide(ball, Gamepieces, False, pg.sprite.collide_mask)
 
     if inp != 0:
         Rotate(inp)
         maze.rotate(CurrRot)
+
+    if maze in collisionchecker:
+        ballspeedy = 0
+    else:
+        ballspeedy = 5
 
     Ball.moveball(ball, ballspeedy, ballspeedy)
 
