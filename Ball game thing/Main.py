@@ -19,12 +19,20 @@ clock = pg.time.Clock()
 running = True
 Gamepieces = sprite.Group(Maze(center_x,center_y), Ball(center_x,center_y))
 
-
 #Constants
-RotationRate = 0.2
+RotationRate = 4.0
+Tick = 60
 
 #global Vars
+#maze
 CurrRot = 0.0
+MaxRot = 4.0
+MinRot = 0.2
+RotT = 0.0
+RotTMultiplier = 1
+IsRotating = False
+
+#ball
 ballspeedx = 0
 ballspeedy = 5
 
@@ -44,16 +52,30 @@ def Rotate(inp):
     if math.fabs(CurrRot) > 360:
         CurrRot = 0
 
+def Rotate2(inp, dt):
+    global CurrRot, RotT
+    if inp != 0:
+        if RotT < 1:
+            RotT += dt * RotTMultiplier
+    else:
+        RotT = 0
+    rot = Lerp(MinRot, MaxRot, RotT) * inp
+    CurrRot += rot
+
+def Lerp(a, b, t):
+    return a + t * (b - a)
+
 #Main Loop
 while running:
+    dt = clock.tick(Tick) / 1000
+    print(dt)
     inp = Inputs()
     maze = Gamepieces.sprites()[0]
     ball = Gamepieces.sprites()[1]
     collisionchecker = pg.sprite.spritecollide(ball, Gamepieces, False, pg.sprite.collide_mask)
 
-    if inp != 0:
-        Rotate(inp)
-        maze.rotate(CurrRot)
+    Rotate2(inp, dt)
+    maze.rotate(CurrRot)
 
     if maze in collisionchecker:
         ballspeedy = 0
@@ -69,5 +91,5 @@ while running:
     screen.fill("white")
     Gamepieces.draw(screen)
     pg.display.flip()
-    clock.tick(60)
+    clock.tick(Tick)
 pg.quit()
