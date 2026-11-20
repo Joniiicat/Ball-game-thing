@@ -15,3 +15,4 @@ class Maze(pg.sprite.Sprite):
     def rotate(self, angle):
         self.image = pg.transform.rotate(self.cleanimage, -angle)
         self.rect = self.image.get_rect(center=(self.x, self.y))
+        self.mask = pg.mask.from_surface(self.image)
