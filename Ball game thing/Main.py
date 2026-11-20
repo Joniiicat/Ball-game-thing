@@ -21,7 +21,7 @@ Gamepieces = sprite.Group(Maze(center_x,center_y), Ball(center_x,center_y))
 
 
 #Constants
-RotationRate = 4.0
+RotationRate = 0.2
 
 #global Vars
 CurrRot = 0.0
