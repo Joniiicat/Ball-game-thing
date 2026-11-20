@@ -45,22 +45,20 @@ def Inputs():
     else:
         return 0
 
-def Rotate(inp):
-    global CurrRot
-    CurrRot += RotationRate * inp
-
-    if math.fabs(CurrRot) > 360:
-        CurrRot = 0
-
-def Rotate2(inp, dt):
+def Rotate(inp, dt):
     global CurrRot, RotT
+
     if inp != 0:
         if RotT < 1:
             RotT += dt * RotTMultiplier
     else:
         RotT = 0
+
     rot = Lerp(MinRot, MaxRot, RotT) * inp
     CurrRot += rot
+
+    if math.fabs(CurrRot) > 360:
+        CurrRot = 0
 
 def Lerp(a, b, t):
     return a + t * (b - a)
@@ -74,7 +72,7 @@ while running:
     ball = Gamepieces.sprites()[1]
     collisionchecker = pg.sprite.spritecollide(ball, Gamepieces, False, pg.sprite.collide_mask)
 
-    Rotate2(inp, dt)
+    Rotate(inp, dt)
     maze.rotate(CurrRot)
 
     if maze in collisionchecker:
